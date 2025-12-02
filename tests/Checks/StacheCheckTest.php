@@ -16,7 +16,7 @@ class StacheCheckTest extends BaseTestCase
 
         Stache::shouldReceive('buildDate')->once()->andReturn($buildDate);
 
-        $result = (new StacheCheck())->run();
+        $result = (new StacheCheck)->run();
 
         $this->assertSame(Status::Healthy, $result->status());
         $this->assertSame('Statamic Stache is built as of '.$buildDate->toDateTimeString(), $result->message());
@@ -26,7 +26,7 @@ class StacheCheckTest extends BaseTestCase
     {
         Stache::shouldReceive('buildDate')->once()->andReturn(null);
 
-        $result = (new StacheCheck())->run();
+        $result = (new StacheCheck)->run();
 
         $this->assertSame(Status::Unhealthy, $result->status());
         $this->assertSame('Statamic Stache has not been built yet.', $result->message());
